@@ -14,10 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Get current branch name
-        run: |
-          echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-          cat build/$BRANCH.env >> $GITHUB_ENV
+      - name: Load env
+        run: cat build/${GITHUB_REF#refs/heads/}.env >> $GITHUB_ENV
 
       - name: Test something
         run: |
