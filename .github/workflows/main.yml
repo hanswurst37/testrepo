@@ -17,7 +17,7 @@ jobs:
       - name: Get current branch name
         run: echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
       - name: Load environment vars
-        run: cat build/${{ env.BRANCH }} >> $GITHUB_ENV
+        run: cat build/${{ env.BRANCH }}.env >> $GITHUB_ENV
 
       - name: Test something
         run: |
