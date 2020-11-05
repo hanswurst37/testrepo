@@ -14,10 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Load environment vars
-        run: BRANCH=${GITHUB_REF#refs/heads/} cat build/$BRANCH.env >> $GITHUB_ENV
+      - name: Get current branch name
+        run: |
+          echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          cat build/$BRANCH.env >> $GITHUB_ENV
 
       - name: Test something
         run: |
           echo Deploy URL is ${{ env.DEPLOY_URL }}
           echo Test = ${{ env.TEST }}
+          echo $GITHUB_ENV
