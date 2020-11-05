@@ -17,8 +17,12 @@ jobs:
       - name: Load env
         run: cat build/${GITHUB_REF#refs/heads/}.env >> $GITHUB_ENV
 
+      - name: Get commit hash
+        run: echo "HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
       - name: Test something
         run: |
           echo Deploy URL is ${{ env.DEPLOY_URL }}
           echo Test = ${{ env.TEST }}
           echo $GITHUB_ENV
+          echo HASH: $HASH
